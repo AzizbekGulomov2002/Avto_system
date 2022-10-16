@@ -1,0 +1,77 @@
+{% extends 'blog/main.html' %}
+
+{% load static %}
+{% block title %}
+    Sardor Auto barchasi
+{% endblock title %}
+{% block content %}
+
+    <div class="car" style="display: flex">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+
+                        <h2> {{ avto.nomi }} <span style="color:red">avtomobili haqida</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="">
+                            <figure><img style="height: 250px;" src="{{ avto.rasm.url }}" alt="#"/></figure>
+                            <a href='/all_avto'><h3>{{ avto.nomi }}</h3></a>
+                            <h4>🏟 </b><span>Manzili</span>: {{ avto.manzil }}</h4>
+                            <h4>📆 </b><span>Yili:</span> {{ avto.yil }} - yil</h4>
+                            <h4>📊 </b><span>Probeg:</span> {{ avto.probeg }} km</h4>
+                            <h4>🛠 </b><span>Kuzov</span>: {{ avto.kuzov }}</h4>
+                            <h4>⛽ </b><span>Dvigatel:</span> {{ avto.dvigatel }}</h4>
+                            <h4>⚫ </b><span>Rangi:</span> {{ avto.rang }}</h4>
+                            <h4>💲 </b><span>Narxi :</span> {{ avto.narx }} so‘m</h4>
+                            <a href='tel: {{ avto.tel_nomer }}'></b><span><h4>☎ Telefon nomer: {{ avto.tel_nomer }}</h4></span></a>
+                            <h4>📑 </b><span>Xarakteristika:</span> {{ avto.xarakteristika }}</h4>
+                            <!--pdf uchun-->
+                            <a class="btn btn-warning" href="" role="button"><i class="fa file"> PDF
+                                format </i></a></br>
+                        </div>
+                        <br>
+                        <a class="btn btn-outline-danger" href="/all_avto" role="button"><i class="fa fa-angle-left">Ortga</i></a>
+                    </div>
+                </div>
+            </div>
+
+{#            <div class="row">#}
+{#                <center>#}
+{#                    <div class="col-md-4 padding_leri">#}
+{#                        <div class="car_box">#}
+{#                            <figure><img style="height: 250px;" src="{{ avto.rasm.url }}" alt="#"/></figure>#}
+{#                            <a href='/all_avto'><h3>{{ avto.nomi }}</h3></a>#}
+{#                            <h4>🏟 </b><span>Manzili</span>: {{ avto.manzil }}</h4>#}
+{#                            <h4>📆 </b><span>Yili:</span> {{ avto.yil }} - yil</h4>#}
+{#                            <h4>📊 </b><span>Probeg:</span> {{ avto.probeg }} km</h4>#}
+{#                            <h4>🛠 </b><span>Kuzov</span>: {{ avto.kuzov }}</h4>#}
+{#                            <h4>⛽ </b><span>Dvigatel:</span> {{ avto.dvigatel }}</h4>#}
+{#                            <h4>⚫ </b><span>Rangi:</span> {{ avto.rang }}</h4>#}
+{#                            <h4>💲 </b><span>Narxi :</span> {{ avto.narx }} so‘m</h4>#}
+{#                            <a href='tel: {{ avto.tel_nomer }}'></b><span><h4>☎ Telefon nomer: {{ avto.tel_nomer }}</h4></span></a>#}
+{#                            <h4>📑 </b><span>Xarakteristika:</span> {{ avto.xarakteristika }}</h4>#}
+{#                            <!--pdf uchun-->#}
+{#                            <a class="btn btn-warning" href="" role="button"><i class="fa file"> PDF#}
+{#                                format </i></a></br>#}
+{#                        </div>#}
+{#                        <br>#}
+{#                        <a class="btn btn-outline-danger" href="/all_avto" role="button"><i class="fa fa-angle-left">Ortga</i></a>#}
+{#                    </div>#}
+{#                </center>#}
+{#            </div>#}
+
+
+        </div>
+    </div>
+    </div>
+
+{% endblock content %}
+
+
+

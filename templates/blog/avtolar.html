@@ -1,0 +1,234 @@
+{% extends 'blog/main.html' %}
+
+{% load static %}
+{% block title %}
+    Barcha avtomobillar
+{% endblock title %}
+{% block content %}
+
+
+    <!--All Categories-->
+
+    <style>
+        body {
+          font-family: Arial;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+        form.example{
+            display: flex;
+            justify-content: center;
+        }
+        form.example input[type=text] {
+          border-radius: 16px;
+          font-size: 17px;
+          border: 1px solid grey;
+          float: left;
+          background: #f1f1f1;
+          margin-right: 5px;
+          padding: 3px 3px;
+        }
+
+        form.example button {
+          border-radius: 16px;
+          padding: 10px 20px;
+          background: #2196F3;
+          color: white;
+          font-size: 17px;
+          border: 1px solid grey;
+          border-left: none;
+          cursor: pointer;
+        }
+
+        form.example button:hover {
+          background: #0b7dda;
+        }
+
+        form.example::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+        .center{
+            margin-bottom: 200px;
+        }
+        .card{
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-img-top{
+            width:250px!important ;
+            height: 200px!important;
+        }
+        .card__btn{
+            padding: 8px 20px;
+        }
+        .card-body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card__container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .titlepage{
+            margin-bottom: 15px;
+        }
+        .titlepage h2{
+            font-size: 20px;
+            letter-spacing: 1.5px;
+            line-height: 25px;
+            margin: 0;
+        }
+        </style>
+        <form class="example" method="POST" action="{% url 'posts' %}">
+            {% csrf_token %}
+            <input  type="text" placeholder="🔎 Qidiruv.." title="qidiruv" name="qidiruv">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+
+{% comment %}
+    <form class="d-flex" method="POST" action="{% url 'posts' %}">
+        {% csrf_token %}
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="🔎 Qidiruv.." title="qidiruv" name="qidiruv">
+    </form> {% endcomment %}
+
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    <div class="car">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2> Barcha Avtomobillar </h2>
+                    </div>
+                </div>
+            </div>
+       <div class="center">
+            <div style="border-radius: 2px!important;" class="row">
+
+                {% for avto in all_avto %}
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-3 card__container" >
+                        <div class="card">
+                            <img style="width: 100%;"  src="{{ avto.rasm.url }}" class="card-img-top" class="d-block w-500 "  alt="...">
+                        <div class="card-body">
+                            <h6 style="text-align:center;font-weight: bolder;"class="card-title">{{ avto.nomi }}</h6>
+                            <p style="text-align:center;font-weight:bolder; font-size: 10px;"
+                               class="card-title">{{ avto.narx }} so'm</p>
+                            <p style="text-align: center; font-size: 9px;" class="card-title">{{ avto.manzil }}</p>
+                            <a  href="{% url 'avto_haqida' avto.id %}" class="btn btn-primary card__btn">Batafsil</a>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="center-2">
+        <!--This is pagination-->
+            {% if page_obj.has_other_pages %}
+                <div class="text-right">
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1">&laquo;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&#8249;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                    {{ page_obj.previous_page_number }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ page_obj.number }}">
+                                {{ page_obj.number }}
+                            </a>
+                        </li>
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?page={{ page_obj.next_page_number }}">
+                                    {{ page_obj.next_page_number }}
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&#8250;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+{% if queryset.has_other_pages %}
+    <div class="pagination">
+        <ul class="container">
+
+            {% if queryset.has_previous %}
+                <li><a href="?page={{ queryset.previous_page_number }}" class="btn page-link"
+                       data-page="{{ queryset.previous_page_number }}">&#10094; Prev</a></li>
+            {% endif %}
+
+
+            {% for page in custom_range %}
+
+                {% if page == queryset.number %}
+                    <li><a href="?page={{ page }}" class="btn page-link btn--sub" data-page="{{ page }}">{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li><a href="?page={{ page }}" class="btn page-link" data-page="{{ page }}">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if queryset.has_next %}
+                <li><a href="?page={{ queryset.next_page_number }}" class="btn page-link"
+                       data-page="{{ queryset.next_page_number }}">Next &#10095;</a></li>
+            {% endif %}
+
+
+        </ul>
+    </div>
+{% endif %}
+
+
+
+<script src="{% static 'js/top.js' %}"></script>

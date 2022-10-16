@@ -1,0 +1,33 @@
+{% extends './sub_base.html' %}
+{% block title %} Kirish {% endblock %}
+{% block content %}
+    <div class="container">
+      <div class="login d-flex align-items-center">
+        <div class="col-12 col-md-12 col-lg-12 mx-auto">
+          <div class="col-md-6 mx-auto">
+            <form class="account-form" action="{% url 'account:login' %}" method="post">
+                {% csrf_token %}
+                <h3 class="mb-4 center"><p align="center">Kirish</p></h3>
+                {% if form.errors %}
+                <div class="alert alert-primary" role="alert">
+                  Xatolik: Email yoki parol xato!
+                </div>
+                {% endif %}
+                <label class="form-label">{{ form.username.label}}</label>
+                {{ form.username}}
+                <label class="form-label">{{ form.password.label}}</label>
+                {{ form.password}}
+                <div class="d-grid gap-2">
+                  <input type="hidden" name="next" value="{{ next }}">
+                  <button class="btn btn-primary py-2 mb-4 mt-5 fw-bold" type="submit" value="Log-in">Kirish
+                  </button>
+                </div>
+                <div class="flex-column justify-content-center mx-auto pb-3">
+                  <div class="text-center"><a href="{% url "account:register" %}">Yangi akkaunt yaratish</a></div>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

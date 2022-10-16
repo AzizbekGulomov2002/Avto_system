@@ -1,0 +1,198 @@
+{% extends 'blog/main.html' %}
+
+{% load static %}
+{% block title %}
+  Sardor Auto barchasi
+{% endblock title %}
+{% block content %}
+
+<!-- <div  class="car">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="titlepage">
+
+                <h2> {{ avto.nomi }} <span style="color:red">avtomobili haqida<span> </h2>
+             </div>
+          </div>
+       </div>
+
+       <div class="row">
+             <center>
+        <div class="col-md-4 padding_leri">
+           <div class="car_box">
+              <figure><img style="height: 250px;" src="{{ avto.rasm.url }}" alt="#"/></figure>
+              <a href='/all_avto'><h3>{{ avto.nomi }}</h3></a>
+              <h4>🏟 <b><span>Manzili</span>: {{ avto.manzil }}</h4>
+              <h4>📆 <b><span>Yili:</span> {{ avto.yil }} - yil</h4>
+              <h4>📊 <b><span>Probeg:</span> {{ avto.probeg }} km</h4>
+              <h4>🛠 <b><span>Kuzov</span>: {{ avto.kuzov }}</h4>
+              <h4>⛽ <b><span>Dvigatel:</span> {{ avto.dvigatel }}</h4>
+              <h4>⚫ <b><span>Rangi:</span> {{ avto.rang }}</h4>
+              <h4>💲 <b><span>Narxi :</span> {{ avto.narx }} so‘m</h4>
+               <a href='tel: {{avto.tel_nomer}}'><b><span><h4>☎ Telefon nomer: {{ avto.tel_nomer }}</h4></a></span>
+              <h4>📑 <b><span>Xarakteristika:</span> {{ avto.xarakteristika }}</h4>
+
+               <a class="btn btn-warning" href="" role="button"><i class="fa file"> PDF format</a></i><br>
+           </div>
+           <br>
+           <a class="btn btn-outline-danger" href="/all_avto" role="button"><i class="fa fa-angle-left">   Ortga</a></i>
+         </center>
+        </div>
+
+
+
+
+       </div>
+    </div>
+ </div> -->
+<style>
+  th{
+    border: style="border: 1px solid rgba(0, 0, 0, 0.374);";
+  }
+  td{
+    border: style="border: 1px solid rgba(0, 0, 0, 0.374);";
+  }
+</style>
+
+ <a class="btn btn-outline-danger" href="/all_avto" role="button"><i class="fa fa-angle-left"> Ortga </i> </a>
+ <div class="center">
+ <h2> {{ avto.nomi }} <span style="color:red">avtomobili haqida</span> </h2>
+
+  <figure><img style="height: 220px;width:350px;" src="{{ avto.rasm.url }}" alt="#"/></figure>
+ </div>
+
+<table  class="table table-striped">
+
+  <thead>
+    <tr >
+      <th  scope="col">1</th>
+      <th   scope="col">Nomi</th>
+      <th  scope="col">Manzili</th>
+    </tr>
+    <tr>
+      <th   scope="row">1</th>
+      <td  >{{ avto.nomi }}</td>
+      <td  >{{ avto.manzil }}</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th   scope="col">2</th>
+      <th   scope="col"> Yil</th>
+      <th  scope="col">Probeg</th>
+    </tr>
+
+    <tr>
+      <th   scope="row">2</th>
+      <td  >{{ avto.yil }} - yil</td>
+      <td  >{{ avto.probeg }} km</td>
+    </tr>
+    <tr>
+     <th   scope="col">3</th>
+     <th   scope="col">Kuzov</th>
+     <th   scope="col">Dvigatel</th>
+   </tr>
+    <tr>
+      <th   scope="row">3</th>
+      <td  > {{ avto.kuzov }}</td>
+      <td  >{{ avto.dvigatel }}</td>
+    </tr>
+    <tr>
+     <th  scope="col">4</th>
+     <th  scope="col">Rangi</th>
+     <th   scope="col">Narxi</th>
+   </tr>
+
+   <tr>
+    <th   scope="row">4</th>
+    <td>{{ avto.rang }} rang</td>
+    <td >{{ avto.narx }} so'm</td>
+  </tr>
+
+   <tr>
+    <th   scope="col">5</th>
+    <th   scope="col">Egasi ismi</th>
+    <th   scope="col"> Bog'lanish</th>
+  </tr>
+
+
+   <tr>
+    <th  scope="row">5</th>
+    <td  >{{ avto.egasi }}</td>
+    <a><td  >{{ avto.tel_nomer }}</td></a>
+
+
+  </tr>
+
+   <tr>
+    <th   scope="col">6</th>
+    <th   scope="col"> Ma'lumot</th>
+    <th   scope="col">Yuklandi</th>
+
+
+  </tr>
+
+  <tr>
+    <th   scope="row">6</th>
+
+    <td >{{ avto.xarakteristika }} </td>
+    <td >{{ avto.yuklangan_sana }} </td>
+
+
+  </tr>
+  </tbody>
+
+
+</table><br>
+
+
+
+ <a class="btn btn-warning" href="" role="button" onclick="window.print()"><i class="fa file"> PDF format</i></a>
+ {% endblock content %}
+
+
+
+
+<script>
+  //Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+ scrollFunction();
+};
+
+function scrollFunction() {
+ if (
+   document.body.scrollTop > 20 ||
+   document.documentElement.scrollTop > 20
+ ) {
+   mybutton.style.display = "block";
+ } else {
+   mybutton.style.display = "none";
+ }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+ document.body.scrollTop = 0;
+ document.documentElement.scrollTop = 0;
+}
+</script>
+<style>
+  #btn-back-to-top {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     display: none;
+   }
+</style>
+<button
+       type="button"
+       class="btn btn-danger btn-floating btn-lg"
+       id="btn-back-to-top"
+       >
+ <i class="fas fa-arrow-up"></i>
+</button>

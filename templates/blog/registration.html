@@ -1,0 +1,59 @@
+{% extends './sub_base.html' %}
+{% block title %}Ro'yhatdan o'tish{% endblock %}
+{% block content %}
+
+<style>
+    .account-form input {
+        border: 2px solid #ccc;
+        height: calc(2em + .75rem + 2px);
+    }
+
+    .account-form input:focus {
+        border-color: #1497ff;
+        box-shadow: none;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="col-md-12">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-7 mx-auto">
+                            <form class="account-form p-4 rounded col-lg-16 mx-auto" action="." method="post">
+                                {% csrf_token %}
+                                <h3 class="mb-2"> Akkaunt yaratish</h3>
+                                {% if form.errors %}
+                                <p>Iltimos quyidagi xatoliklarni to'g'irlang</p>
+                                {% for field in form %}
+                                {% if field.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    {{ field.label }}: {{ field.errors|striptags }}
+                                </div>
+
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                                <label>{{ form.email.label }}<small class="text-muted small">
+                                        (Majburiy)</small></label>
+                                {{ form.email }}
+                                <label>{{ form.password.label }}<span class="text-muted mb-4">
+                                        (Majburiy)</span></label>
+                                {{ form.password }}
+                                <label>{{ form.password2.label }}<span class="text-muted small">
+                                        (Majburiy)</span></label>
+                                {{ form.password2 }}
+                                <button class="btn btn-primary btn-block py-2 mb4 mt-5 fw500 w-100" type="submit">Ro'yhatdan o'tish</button>
+                                <p class="text-center">
+                                    <a href="{% url 'account:login' %}">Agar ro'yhatdan o'tgan bo'lsangiz bu yerga bosing</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
