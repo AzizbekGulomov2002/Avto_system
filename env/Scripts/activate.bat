@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\User\Desktop\Avto_systems\Avto_systems\env
+set VIRTUAL_ENV=C:\D disk\Deploy Projects Django\Avto system\env
 
 if not defined PROMPT set PROMPT=$P$G
 
